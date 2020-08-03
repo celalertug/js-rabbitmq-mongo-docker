@@ -1,0 +1,28 @@
+version: "3"
+services:
+  express-mongodb:
+    image: mongo
+    networks:
+      - express-service-net
+    ports:
+      - 27017:27017
+
+  express-service:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      MONGO_URL: mongodb://express-mongodb:27017
+      COLLECTION_NAME: table
+      DB_NAME: mydb
+      PORT: 3000
+
+    restart: on-failure
+    networks:
+      - express-service-net
+    depends_on:
+      - express-mongodb
+
+networks:
+  express-service-net:
+    driver: bridge
