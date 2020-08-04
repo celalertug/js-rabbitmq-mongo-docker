@@ -1,8 +1,8 @@
-## mocha nodejs expressjs mongo docker tdd js template
+## mocha nodejs rabbitmq mongo docker tdd js template
 
 ### clone
 
-`git clone https://github.com/celalertug/js-express-mongo-docker.git`
+`git clone https://github.com/celalertug/js-rabbitmq-mongo-docker.git`
 
 ### build
 
