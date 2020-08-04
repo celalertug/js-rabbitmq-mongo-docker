@@ -1,21 +1,31 @@
-const express = require('express');
+const controller = async (mongo, consumer) => {
+  await consumer.consume('item.add', 'item-add-queue', async (msg) => {
+    const { replyTo, correlationId } = msg.properties;
 
-module.exports = (service) => {
-  const router = express.Router();
+    const body = JSON.parse(msg.content.toString());
 
-  router.get('/test', (req, res) => {
-    res.json({ message: 'surprise motherfucker!!!' });
+    let res = await mongo.insert(body);
+    res = res.result.ok ? { success: true } : { success: false };
+
+    if (replyTo) {
+      await consumer.sendToQueue(replyTo, JSON.stringify(res), { correlationId });
+    }
   });
 
-  router.post('/item', async (req, res) => {
-    await service.insert(req.body);
-    await service.find();
+  await consumer.consume('item.find', 'item-find-queue', async (msg) => {
+    const { replyTo, correlationId } = msg.properties;
 
-    res.json(req.body);
-  });
-  router.get('/item', async (req, res) => {
-    res.json(await service.find());
-  });
+    const body = JSON.parse(msg.content.toString());
 
-  return router;
+    const res = await mongo.find(body);
+    // console.log(res);
+
+    // res = res.result.ok ? { success: true } : { success: false };
+
+    if (replyTo) {
+      await consumer.sendToQueue(replyTo, JSON.stringify(res), { correlationId });
+    }
+  });
 };
+
+module.exports = controller;

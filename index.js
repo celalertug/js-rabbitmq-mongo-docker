@@ -1,15 +1,13 @@
 /* eslint-disable no-console */
 require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
 const { connectDb, create } = require('mongo-node-client');
+const { ServiceCreator } = require('amqp-rpc-node-client');
 
 const controller = require('./src/controller.js');
 
 (async () => {
   const {
-    PORT, MONGO_URL, DB_NAME, COLLECTION_NAME,
+    MONGO_URL, DB_NAME, COLLECTION_NAME, RABBITMQ_EXCHANGE, RABBITMQ_HOST,
   } = process.env;
 
   let db;
@@ -23,19 +21,27 @@ const controller = require('./src/controller.js');
     process.exit(1);
   }
 
-  const authTokenService = create(dbo, COLLECTION_NAME);
+  const dbService = create(dbo, COLLECTION_NAME);
   try {
-    await authTokenService.createCollection();
+    await dbService.createCollection();
   } catch (error) {
     console.log('collection error');
     console.log(error);
   }
 
-  const app = express();
+  let amqpService;
+  try {
+    amqpService = await ServiceCreator(RABBITMQ_HOST, RABBITMQ_EXCHANGE);
+  } catch (err) {
+    console.log('rabbit mq connection failed');
+    process.exit(1);
+  }
 
-  app.use(bodyParser.json());
-  app.use(cors());
-  app.use('/', controller(authTokenService));
-
-  app.listen(PORT, () => console.log(`listening at http://localhost:${PORT}`));
+  try {
+    await controller(dbService, amqpService);
+  } catch (err) {
+    console.log('consumers failed');
+    process.exit(1);
+  }
+  console.log('Yol kapatıldı... Yol ölüler tarafından kapatıldı... ve yol ölülerin kontrolünde...');
 })();

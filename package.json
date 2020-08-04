@@ -1,15 +1,15 @@
 {
-  "name": "js-mocha-template",
+  "name": "js-rabbitmq-mongo-docker",
   "version": "1.0.0",
   "description": "mocha starter template",
   "main": "index.js",
-  "repository": "https://github.com/celalertug/js-mocha-template",
+  "repository": "https://github.com/celalertug/js-rabbitmq-mongo-docker",
   "author": "celal ertug",
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
     "test": "mocha tests",
-    "test-api": "mocha -w tests/api.test.js",
+    "test-consumer": "mocha -w tests/consumer.test.js",
     "test-index": "mocha -w tests/index.test.js",
     "lint": "eslint",
     "docker": "docker-compose build",
@@ -24,6 +24,7 @@
     "mocha": "^7.1.0"
   },
   "dependencies": {
+    "amqp-rpc-node-client": "^0.0.2",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",

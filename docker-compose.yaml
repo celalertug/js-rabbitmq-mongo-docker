@@ -1,28 +1,36 @@
 version: "3"
 services:
-  express-mongodb:
+  mongodb:
     image: mongo
     networks:
-      - express-service-net
+      - service-net
     ports:
       - 27017:27017
 
-  express-service:
-    build: .
+  rabbitmq:
+    image: rabbitmq:3-management
+    networks:
+      - service-net
     ports:
-      - 3000:3000
+      - 5672:5672
+      - 15672:15672
+
+  node-service:
+    build: .
     environment:
-      MONGO_URL: mongodb://express-mongodb:27017
+      MONGO_URL: mongodb://mongodb:27017
       COLLECTION_NAME: table
       DB_NAME: mydb
-      PORT: 3000
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_EXCHANGE: hebele-hubele-exchange
 
-    restart: on-failure
+    restart: unless-stopped
     networks:
-      - express-service-net
+      - service-net
     depends_on:
-      - express-mongodb
+      - mongodb
+      - rabbitmq
 
 networks:
-  express-service-net:
+  service-net:
     driver: bridge
