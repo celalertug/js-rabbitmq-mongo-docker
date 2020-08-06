@@ -61,10 +61,10 @@ ajv@^6.10.0, ajv@^6.10.2:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-amqp-rpc-node-client@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/amqp-rpc-node-client/-/amqp-rpc-node-client-0.0.2.tgz#13dabbe1fb1a6114e1870beee557595ad44fe70a"
-  integrity sha512-HlhkebBPyYfiBuCqbFb7I3Tm7ncoNZBd44SjZbhKwtebDZaZZJZPaMnsJz5Zqm7EJiH8kLudTNbemOsPm2H7CQ==
+amqp-rpc-node-client@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/amqp-rpc-node-client/-/amqp-rpc-node-client-0.0.3.tgz#85d13ef0512c3da5940da5386096634e1a10d706"
+  integrity sha512-bWr9GSV7L04q6bIHkIpQpGvwQHpV4iTUx2jbj1TUA4GMy7mSrbfd8JpTKvQMexdkq3EjJV7ZdwHWLrubtgEQQA==
   dependencies:
     amqplib "^0.6.0"
     lodash "^4.17.15"
@@ -1221,6 +1221,11 @@ lodash@^4.17.14, lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
+lodash@^4.17.19:
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 log-symbols@3.0.0:
   version "3.0.0"
