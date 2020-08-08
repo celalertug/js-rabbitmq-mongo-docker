@@ -61,10 +61,10 @@ ajv@^6.10.0, ajv@^6.10.2:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-amqp-rpc-node-client@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/amqp-rpc-node-client/-/amqp-rpc-node-client-0.0.3.tgz#85d13ef0512c3da5940da5386096634e1a10d706"
-  integrity sha512-bWr9GSV7L04q6bIHkIpQpGvwQHpV4iTUx2jbj1TUA4GMy7mSrbfd8JpTKvQMexdkq3EjJV7ZdwHWLrubtgEQQA==
+amqp-rpc-node-client@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/amqp-rpc-node-client/-/amqp-rpc-node-client-0.0.5.tgz#bc826180656ae749afd05cefbc7fe94f4697a9af"
+  integrity sha512-DetwOnNjJVU/BOLjF6H6tawZ+1bhswBMFiQadVyrfT+JR5NP32hiW24NlKpw2A9wlOJm0T3DCdcqT3fltgghfQ==
   dependencies:
     amqplib "^0.6.0"
     lodash "^4.17.15"

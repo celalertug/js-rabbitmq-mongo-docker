@@ -24,7 +24,7 @@
     "mocha": "^7.1.0"
   },
   "dependencies": {
-    "amqp-rpc-node-client": "^0.0.3",
+    "amqp-rpc-node-client": "^0.0.5",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
